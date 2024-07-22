@@ -34,7 +34,8 @@ const getComprasPorUsuario = async (req, res) => {
 
     try {
         const compras = await compraModel.find({ usuario: usuarioId })
-            .populate('producto', 'nombre descripcion precio') // Incluye los detalles del producto
+            .populate('producto', 'nombre descripcion precio')
+            .populate('usuario', 'nombre cedula')
             .exec();
 
         if (compras.length === 0) return handleHttpError(res, "No se encontraron compras para este usuario", 404);
@@ -52,7 +53,9 @@ const getComprasPorProducto = async (req, res) => {
 
     try {
         const compras = await compraModel.find({ producto: productoId })
-            .populate('usuario', 'nombre correo') // Incluye los detalles del usuario
+            .populate('usuario', 'nombre cedula')
+            .populate('producto', 'nombre descripcion precio')
+
             .exec();
 
         if (compras.length === 0) return handleHttpError(res, "No se encontraron compras para este producto", 404);

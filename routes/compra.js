@@ -19,8 +19,8 @@ module.exports = router;
 
 /* Estructura de Rutas
 Crear una nueva compra: POST /api/compras/
-Obtener todas las compras de un usuario: GET /api/compras/usuario/:usuarioId
-Obtener todas las compras de un producto: GET /api/compras/producto/:productoId
+Obtener todas las compras de un usuario: GET /api/compra/usuario/:usuarioId
+Obtener todas las compras de un producto: GET /api/compra/producto/:productoId
 Actualizar una compra: PUT /api/compras/:compraId
 Eliminar una compra: DELETE /api/compras/:compraId
  */
