@@ -29,10 +29,9 @@ const registerCtrl = async (req, res) => {
         };
 
         res.send({ data });
+        
     } catch (error) {
-        console.error(error); // Log del error para depuración
-        handleHttpError(res, "error al registrar el usuario");
-    }
+        handleHttpError(res, "error al registrar el usuario", 500);     }
 }
 
 
