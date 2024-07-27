@@ -30,7 +30,7 @@ const usuarioSchema = new mongoose.Schema({
     },
 }, 
 {
-    timestamps: true // Configuración de timestamps para createdAt y updatedAt
+    timestamps: true 
 });
 
 module.exports = mongoose.model('Usuario', usuarioSchema);

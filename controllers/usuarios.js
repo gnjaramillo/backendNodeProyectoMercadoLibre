@@ -34,7 +34,6 @@ const postUsuarios = async (req, res) => {
     const { body } = req;
 
     try {
-        // Crear el usuario en la base de datos sin la referencia al archivo
         const data = await usuariosModel.create(body);
 
         // Log para verificar los datos guardados
@@ -43,7 +42,6 @@ const postUsuarios = async (req, res) => {
         res.status(201).send({ message: "Usuario creado exitosamente", data });
     } catch (error) {
         handleHttpError(res, "Error al crear el usuario");
-        // res.status(500).send({ message: "Error al crear el usuario", error });
     }
 };
 

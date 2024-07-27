@@ -20,7 +20,7 @@ const compraSchema = new mongoose.Schema({
         default: Date.now
     }
 }, {
-    timestamps: true // Añade campos createdAt y updatedAt
+    timestamps: true 
 });
 
 module.exports = mongoose.model('Compra', compraSchema);

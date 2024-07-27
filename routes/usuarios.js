@@ -4,7 +4,6 @@ const { getUsuarios, postUsuarios, updateUsuarios, deleteUsuarios, getUsuariosId
 const uploadMiddleware = require("../utils/handleStorage");
 const { validatorPostUsuarios, validatorUpdateUsuarios, validatorPostUsuariosId } = require("../validators/usuarios");
 
-// Rutas para la manipulación de usuarios
 router.get("/", getUsuarios);
 router.get("/:id", validatorPostUsuariosId, getUsuariosId);
 router.post("/",  validatorPostUsuarios, postUsuarios);

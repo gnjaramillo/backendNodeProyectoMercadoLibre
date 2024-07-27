@@ -4,7 +4,6 @@ const uploadMiddleware = require("../utils/handleStorage");
 const { getProducto, getProductoId, postProducto, updateProducto, deleteProducto }= require("../controllers/producto");
 
 
-// Rutas para la manipulación de Categoria
 router.get("/", getProducto);
 router.get("/:id",  getProductoId);
 router.post("/", uploadMiddleware.single('foto'), postProducto);

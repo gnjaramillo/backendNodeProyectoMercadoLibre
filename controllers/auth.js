@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { encrypt, compare } = require("../utils/handlePassword");
-const { usuariosModel, storageModel } = require("../models"); // Asegúrate de importar todos los modelos necesarios
+const { usuariosModel, storageModel } = require("../models"); 
 const { tokenSign } = require("../utils/handleJwt");
 const {handleHttpError} = require ("../utils/handleError.js");
 
