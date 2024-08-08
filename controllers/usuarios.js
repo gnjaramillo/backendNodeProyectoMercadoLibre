@@ -7,7 +7,7 @@ const PUBLIC_URL = process.env.PUBLIC_URL;
 //traer usuarios bd
  const getUsuarios = async (req, res) => {
     try {
-        const data = await usuariosModel.find({})
+        const data = await usuariosModel.find({}).select('-password');
         res.send({ data });
     } catch (error) {
         res.status(500).send({ message: "Error al obtener datos", error });
@@ -20,7 +20,7 @@ const PUBLIC_URL = process.env.PUBLIC_URL;
 const getUsuariosId = async (req, res) => {
     try {
         const { id } = req.params;  
-        const data = await usuariosModel.findById(id) 
+        const data = await usuariosModel.findById(id).select('-password');
         res.send({  message: "Usuario consultado exitosamente", data});
     } catch (error) {
         handleHttpError(res, "Error al consultar el usuario")

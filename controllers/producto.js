@@ -1,4 +1,4 @@
-const {storageModel, productoModel} = require("../models")
+const {storageModel, productoModel, categoriaModel } = require("../models")
 const {handleHttpError} = require("../utils/handleError")
 const PUBLIC_URL = process.env.PUBLIC_URL;
 
@@ -109,5 +109,28 @@ const deleteProducto = async (req, res) => {
     }
 };
 
-module.exports = { getProducto, getProductoId, postProducto, updateProducto, deleteProducto };
+
+// Obtener productos por categoría
+const getProductosByCategoria = async (req, res) => {
+    try {
+        const { categoria } = req.params;
+        const categoriaObj = await categoriaModel.findOne({ nombre: categoria });
+
+        if (!categoriaObj) {
+            handleHttpError(res, "Categoría no encontrada", 404);
+            return;
+        }
+
+        const data = await productoModel.find({ categoria: categoriaObj._id })
+            .populate('categoria', 'nombre')
+            .populate('foto', 'url filename');
+        res.send({ data });
+    } catch (error) {
+        handleHttpError(res, "Error al obtener productos por categoría");
+    }
+};
+
+module.exports = { getProducto, getProductoId, postProducto, updateProducto, deleteProducto, getProductosByCategoria };
+
+
 

@@ -9,4 +9,5 @@ router.post("/", postCategoria);
 router.put("/:id",  updateCategoria);
 router.delete("/:id", deleteCategoria);
 
+
 module.exports = router;

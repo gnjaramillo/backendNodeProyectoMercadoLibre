@@ -87,4 +87,6 @@ const deleteCategoria = async (req, res) => {
 
 
 
+
+
 module.exports = { getCategoria, getCategoriaId, postCategoria, updateCategoria, deleteCategoria };
