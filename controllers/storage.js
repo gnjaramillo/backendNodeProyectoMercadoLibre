@@ -1,17 +1,23 @@
 
 const {storageModel} = require("../models") // aqui llama al index.js de models
 const PUBLIC_URL = process.env.PUBLIC_URL;
-
+const RENDER_URL = process.env.RENDER_URL;
     
     //Crear un nuevo archivo y almacenarlo
     const createStorage = async (req, res) => {
         const {body, file}= req
         console.log(file)
        
-        const fileData = {
+/*         const fileData = {
             filename: file.filename,
             url: `${PUBLIC_URL}/${file.filename}`,
         }
+ */
+        const fileData = {
+            filename: file.filename,
+            url: `${RENDER_URL}/${file.filename}`,
+        }
+
 
         const data = await storageModel.create(fileData)
         res.status(201).send({ message: "archivo creado", file });

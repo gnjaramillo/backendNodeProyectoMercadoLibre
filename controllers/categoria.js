@@ -36,9 +36,9 @@ const postCategoria = async (req, res) => {
         const data ={
             ...body
         }
-        const dataCentroF = await categoriaModel.create(data);
+        const dataCat = await categoriaModel.create(data);
         console.log(data)
-        res.send({message: "categoria registrada exitosamente", dataCentroF})
+        res.send({message: "categoria registrada exitosamente", dataCat})
     } catch (error) {
         handleHttpError(res, "Error al registrar la categoria")
     }

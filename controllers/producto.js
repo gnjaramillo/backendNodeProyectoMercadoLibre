@@ -1,6 +1,7 @@
 const {storageModel, productoModel, categoriaModel } = require("../models")
 const {handleHttpError} = require("../utils/handleError")
 const PUBLIC_URL = process.env.PUBLIC_URL;
+const RENDER_URL = process.env.RENDER_URL;
 
 // Obtener todos los productos
 const getProducto = async (req, res) => {
@@ -42,7 +43,7 @@ const postProducto = async (req, res) => {
         let fotoId = null;
         if (file) {
             const fileData = {
-                url: `${PUBLIC_URL}/${file.filename}`,
+                url: `${RENDER_URL}/${file.filename}`,
                 filename: file.filename
             };
             console.log(fileData)
@@ -61,6 +62,8 @@ const postProducto = async (req, res) => {
     }
 };
 
+
+
 // Actualizar producto
 const updateProducto = async (req, res) => {
     const { id } = req.params;
@@ -71,7 +74,7 @@ const updateProducto = async (req, res) => {
 
         if (file) {
             const fileData = {
-                url: `${PUBLIC_URL}/${file.filename}`,
+                url: `${RENDER_URL}/${file.filename}`,
                 filename: file.filename
             };
             const fileSaved = await storageModel.create(fileData);
@@ -114,9 +117,11 @@ const deleteProducto = async (req, res) => {
 const getProductosByCategoria = async (req, res) => {
     try {
         const { categoria } = req.params;
+        console.log(`Buscando productos en la categoría: ${categoria}`);
         const categoriaObj = await categoriaModel.findOne({ nombre: categoria });
 
         if (!categoriaObj) {
+            console.log(`Categoría no encontrada: ${categoria}`);
             handleHttpError(res, "Categoría no encontrada", 404);
             return;
         }
@@ -124,11 +129,15 @@ const getProductosByCategoria = async (req, res) => {
         const data = await productoModel.find({ categoria: categoriaObj._id })
             .populate('categoria', 'nombre')
             .populate('foto', 'url filename');
+
+        console.log(`Productos encontrados: ${data.length}`);
         res.send({ data });
     } catch (error) {
+        console.error(`Error al obtener productos por categoría: ${error.message}`);
         handleHttpError(res, "Error al obtener productos por categoría");
     }
 };
+
 
 module.exports = { getProducto, getProductoId, postProducto, updateProducto, deleteProducto, getProductosByCategoria };
 
