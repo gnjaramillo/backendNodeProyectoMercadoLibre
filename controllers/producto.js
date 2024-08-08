@@ -43,7 +43,7 @@ const postProducto = async (req, res) => {
         let fotoId = null;
         if (file) {
             const fileData = {
-                url: `${RENDER_URL}/${file.filename}`,
+                url: `${PUBLIC_URL}/${file.filename}`,
                 filename: file.filename
             };
             console.log(fileData)
@@ -74,7 +74,7 @@ const updateProducto = async (req, res) => {
 
         if (file) {
             const fileData = {
-                url: `${RENDER_URL}/${file.filename}`,
+                url: `${PUBLIC_URL}/${file.filename}`,
                 filename: file.filename
             };
             const fileSaved = await storageModel.create(fileData);

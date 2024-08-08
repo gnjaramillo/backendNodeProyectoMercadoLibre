@@ -8,16 +8,16 @@ const RENDER_URL = process.env.RENDER_URL;
         const {body, file}= req
         console.log(file)
        
-/*         const fileData = {
+        const fileData = {
             filename: file.filename,
             url: `${PUBLIC_URL}/${file.filename}`,
         }
- */
-        const fileData = {
+ 
+/*         const fileData = {
             filename: file.filename,
             url: `${RENDER_URL}/${file.filename}`,
         }
-
+ */
 
         const data = await storageModel.create(fileData)
         res.status(201).send({ message: "archivo creado", file });
