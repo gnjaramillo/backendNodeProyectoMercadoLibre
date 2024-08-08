@@ -19,7 +19,11 @@ const storage = multer.diskStorage({
     }
 });
 
-const uploadMiddleware = multer({storage});
+// Configura el tamaño máximo permitido
+const uploadMiddleware = multer({
+    storage: storage,
+    limits: { fileSize: 1000000 } // 1MB
+});
 
 
 module.exports = uploadMiddleware;
