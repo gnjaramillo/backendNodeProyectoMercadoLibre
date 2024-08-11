@@ -1,5 +1,6 @@
 // Importamos y configuramos el paquete dotenv para cargar las variables de entorno desde un archivo .env
-require("dotenv").config();
+require('dotenv').config();
+
 const express = require("express");
 const cors = require("cors");
 const dbConnect = require('./config/mongo')

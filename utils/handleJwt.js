@@ -6,7 +6,6 @@ const tokenSign = async (usuario) => {
     // payload
     {
       _id: usuario._id,
-      rol: usuario.tipoUsuario,
     },
     JWT_SECRET, 
     { expiresIn: "2h" } // tiempo de expiración del token
